@@ -5,10 +5,12 @@
 TEMPLATE = app
 TARGET = Simweather
 INCLUDEPATH += .
+RESOURCES += res.qrc
+
 QT += widgets
 QT += network
 QT += xml
 
 # Input
-HEADERS += taker.hpp
-SOURCES += main.cpp taker.cpp
+HEADERS += taker.hpp formato.hpp
+SOURCES += main.cpp taker.cpp formato.cpp

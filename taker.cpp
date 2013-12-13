@@ -15,18 +15,18 @@ Taker::Taker() {
 }
 
 Taker* Taker::take(const QString& city) { 
-    qDebug() << "take the " + city;
+    qDebug() << "take the " << city;
     read_data(form_url(city));
     return this;
 }
 
 QUrl Taker::form_url(const QString& city) {
-    qDebug() << "form url " + city;
+    qDebug() << "form url " << city;
     return QUrl(base_url.arg(city).arg("xml").arg(5).arg(key));
 }
 
 void Taker::read_data(const QUrl& city) {
-    qDebug() << "read_data " + city.toString();
+    qDebug() << "read_data " << city.toString();
     data_access.get(QNetworkRequest(city));
 }
 

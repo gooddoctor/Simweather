@@ -7,6 +7,7 @@ TARGET = Simweather
 INCLUDEPATH += .
 RESOURCES += res.qrc
 
+QMAKE_CXXFLAGS += -std=c++11
 QT += widgets
 QT += network
 QT += xml

@@ -16,6 +16,7 @@ public slots:
     View* damn();
 private:
     void place_it();
+    void animate_it(QWidget* widget);
 private slots:
     void go_handler();
 private:

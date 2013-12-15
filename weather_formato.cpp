@@ -6,6 +6,8 @@
 
 #include "formato.hpp"
 
+using namespace weather;
+
 Formato::Formato() { }
 
 Formato* Formato::format(const QDomDocument& data) {

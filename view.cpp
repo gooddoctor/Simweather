@@ -5,6 +5,7 @@
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
 #include <QCompleter>
+#include <QDebug>
 
 #include <iostream>
 #include <cassert>
@@ -12,7 +13,17 @@
 #include "view.hpp"
 
 View::View() {
+    cities = new QStringListModel();
+
     search = new QLineEdit();
+    search->setCompleter([this]() {
+            QCompleter* completer = new QCompleter(cities);
+            completer->setCaseSensitivity(Qt::CaseInsensitive);
+            return completer;
+        }());
+
+    connect(search, SIGNAL(textEdited(const QString&)),
+            this, SLOT(text_handler(const QString&)));
 
     go = new QPushButton(tr("Поиск"));
     connect(go, SIGNAL(clicked()), this, SLOT(go_handler()));
@@ -44,12 +55,19 @@ View::View() {
     place_it();
 }
 
-View* View::satisfy(const QString& data) {
+View* View::satisfy_weather(const QString& data) {
     //show weather
     weather->setHtml(data);
     info->setCurrentWidget(weather);
     //slighty animated
     animate_it(weather);
+
+    return this;
+}
+
+View* View::satisfy_cities(const QStringList& data) {
+    cities->setStringList(data);
+    search->completer()->complete();
 
     return this;
 }
@@ -90,5 +108,10 @@ void View::animate_it(QWidget* widget) {
 
 void View::go_handler() {
     if (search->text().trimmed().length() > 0)
-        emit desire(search->text().trimmed());
+        emit desire_weather(search->text().trimmed());
+}
+
+void View::text_handler(const QString& city) {
+    if (city.trimmed().length() > 0)
+        emit desire_cities(city.trimmed());
 }

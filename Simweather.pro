@@ -16,4 +16,7 @@ QT += webkitwidgets
 
 # Input
 HEADERS += taker.hpp formato.hpp view.hpp
-SOURCES += main.cpp taker.cpp formato.cpp view.cpp
+SOURCES += main.cpp 
+SOURCES += weather_taker.cpp cities_taker.cpp 
+SOURCES += weather_formato.cpp cities_formato.cpp 
+SOURCES += view.cpp

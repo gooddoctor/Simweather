@@ -4,9 +4,14 @@
 
 #include "taker.hpp"
 
-const QString base_url = 
-    "http://api.worldweatheronline.com/free/v1/weather.ashx?q=%1&format=%2&num_of_days=%3&key=%4";
-const QString key = "nxbzr35722s7yjpaexbbu27h";
+using namespace cities;
+
+namespace {
+    const QString base_url = 
+        "http://api.geonames.org/search?name_startsWith=%1&maxRows=%2&featureCode=PPL&username=%3";
+    const QString username = "gooddocteur";
+}
+
 
 
 Taker::Taker() { 
@@ -21,8 +26,7 @@ Taker* Taker::take(const QString& city) {
 }
 
 QUrl Taker::form_url(const QString& city) {
-    qDebug() << "form url " << city;
-    return QUrl(base_url.arg(city).arg("xml").arg(5).arg(key));
+    return QUrl(base_url.arg(city).arg(5).arg(username));
 }
 
 void Taker::read_data(const QUrl& city) {
@@ -35,5 +39,3 @@ void Taker::done(QNetworkReply* reply) {
     document.setContent(reply);
     emit give_back(document);
 }
-
-

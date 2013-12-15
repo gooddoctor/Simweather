@@ -9,6 +9,12 @@
 Formato::Formato() { }
 
 Formato* Formato::format(const QDomDocument& data) {
+    //check the data
+    if (!check(data)) {
+        emit shit_happens();
+        return this;
+    }
+
     //fill the map
     parse(data);
 
@@ -60,5 +66,18 @@ void Formato::parse(const QDomDocument& data) {
                 QString("%1.%2").
                 arg(QDateTime::currentDateTime().date().day(), 2, 10, QChar('0')).
                 arg(QDateTime::currentDateTime().date().month(), 2, 10, QChar('0'))});
+}
+
+bool Formato::check(const QDomDocument& data) {
+    if (data.elementsByTagName("query").isEmpty() ||
+        data.elementsByTagName("current_condition").isEmpty() || 
+        (data.elementsByTagName("current_condition").at(0).toElement().
+         elementsByTagName("temp_C").isEmpty()) ||
+        (data.elementsByTagName("current_condition").at(0).toElement().
+         elementsByTagName("weatherIconUrl").isEmpty()) ||
+        (data.elementsByTagName("current_condition").at(0).toElement().
+         elementsByTagName("weatherDesc").isEmpty()))
+        return false;
+    return true;
 }
 

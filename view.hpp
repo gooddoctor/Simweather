@@ -13,6 +13,7 @@ public:
     View();
 public slots:
     View* satisfy(const QString& data);
+    View* damn();
 private:
     void place_it();
 private slots:

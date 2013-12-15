@@ -19,6 +19,8 @@ int main(int argc, char** argv) {
                      &formato, SLOT(format(const QDomDocument)));
     QObject::connect(&formato, SIGNAL(done(const QString&)),
                      &view, SLOT(satisfy(const QString&)));
+    QObject::connect(&formato, SIGNAL(shit_happens()),
+                     &view, SLOT(damn()));
 
     view.show();
 

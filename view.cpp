@@ -38,6 +38,11 @@ View* View::satisfy(const QString& data) {
     return this;
 }
 
+View* View::damn() {
+    info->setCurrentIndex(0);
+    return this;
+}
+
 void View::place_it() {
     QHBoxLayout* horizontal = new QHBoxLayout();
     horizontal->addWidget(search);

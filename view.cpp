@@ -4,6 +4,7 @@
 #include <QVBoxLayout>
 #include <QGraphicsOpacityEffect>
 #include <QPropertyAnimation>
+#include <QCompleter>
 
 #include <iostream>
 #include <cassert>
@@ -23,16 +24,16 @@ View::View() {
     no_data = new QWebView();
     no_data->setHtml(QTextStream(&file).readAll());
     no_data->setGraphicsEffect([]() {
-            QGraphicsOpacityEffect* no_data_opacity = new QGraphicsOpacityEffect();
-            no_data_opacity->setOpacity(1.0);
-            return no_data_opacity;
+            QGraphicsOpacityEffect* effect = new QGraphicsOpacityEffect();
+            effect->setOpacity(1.0);
+            return effect;
         }());
 
     weather = new QWebView();
     weather->setGraphicsEffect([]() {
-            QGraphicsOpacityEffect* weather_opacity = new QGraphicsOpacityEffect();
-            weather_opacity->setOpacity(1.0);
-            return weather_opacity;
+            QGraphicsOpacityEffect* effect = new QGraphicsOpacityEffect();
+            effect->setOpacity(1.0);
+            return effect;
         }());
 
     info = new QStackedWidget();

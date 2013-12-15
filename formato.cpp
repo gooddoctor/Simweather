@@ -45,6 +45,8 @@ void Formato::parse(const QDomDocument& data) {
     assert(data.elementsByTagName("current_condition").at(0).toElement().
            elementsByTagName("weatherDesc").size() > 0);
 
+    info.clear();
+
     info.insert({"city", data.elementsByTagName("query").at(0).toElement().text()});
     info.insert({"temp", data.elementsByTagName("current_condition").at(0).toElement().
                 elementsByTagName("temp_C").at(0).toElement().text()});

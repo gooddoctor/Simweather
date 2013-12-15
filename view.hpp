@@ -15,6 +15,8 @@ public slots:
     View* satisfy(const QString& data);
 private:
     void place_it();
+private slots:
+    void go_handler();
 private:
     QLineEdit* search;
     QPushButton* go;
@@ -22,6 +24,8 @@ private:
     QStackedWidget* info;
     QWebView* no_data;
     QWebView* weather;
+signals:
+    void desire(const QString& city);
 };
 
 #endif

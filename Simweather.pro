@@ -8,10 +8,12 @@ INCLUDEPATH += .
 RESOURCES += res.qrc
 
 QMAKE_CXXFLAGS += -std=c++11
+
 QT += widgets
 QT += network
 QT += xml
+QT += webkitwidgets
 
 # Input
-HEADERS += taker.hpp formato.hpp
-SOURCES += main.cpp taker.cpp formato.cpp
+HEADERS += taker.hpp formato.hpp view.hpp
+SOURCES += main.cpp taker.cpp formato.cpp view.cpp

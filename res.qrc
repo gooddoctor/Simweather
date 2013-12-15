@@ -1,5 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
 	<file>resources/template.html</file>
+	<file>resources/no_data.html</file>
 </qresource>
 </RCC>

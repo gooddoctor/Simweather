@@ -4,13 +4,21 @@
 
 #include "taker.hpp"
 #include "formato.hpp"
+#include "view.hpp"
 
 int main(int argc, char** argv) {
     QApplication app(argc, argv);
+
     Taker taker;
-    Formato formatter;
+    Formato formato;
+    View view;
+
     QObject::connect(&taker, SIGNAL(give_back(const QDomDocument&)),
-                     &formatter, SLOT(format(const QDomDocument)));
-    taker.take("Kerch");
+                     &formato, SLOT(format(const QDomDocument)));
+    QObject::connect(&formato, SIGNAL(done(const QString&)),
+                     &view, SLOT(satisfy(const QString&)));
+
+    view.show();
+
     return app.exec();
 }
